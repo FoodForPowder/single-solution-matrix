@@ -1,7 +1,7 @@
 ﻿#include <fstream>
 #include <iostream>
 #include <cstdio>
-#define ROWS M
+#define ROW M
 #define COLUMNS N
 using namespace std;
 void SolveMatrix(int numberOfRows, int numberOfColumns, double** matrix);
@@ -10,16 +10,16 @@ int main()
     ifstream fin;
     fin.open("input.txt");
     if (fin.is_open()) {
-        int ROWS, COLUMNS;
-        fin >> ROWS >> COLUMNS;
+        int ROW, COLUMNS;
+        fin >> ROW >> COLUMNS;
         COLUMNS++;
         double** expanded_matrix;
-        expanded_matrix = new double* [ROWS];
-        for (int i = 0; i < ROWS; i++) expanded_matrix[i] = new double[COLUMNS];
-        for (int i = 0; i < ROWS; i++) {
+        expanded_matrix = new double* [ROW];
+        for (int i = 0; i < ROW; i++) expanded_matrix[i] = new double[COLUMNS];
+        for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COLUMNS; j++) fin >> expanded_matrix[i][j];
         }
-        SolveMatrix(ROWS, COLUMNS - 1, expanded_matrix);
+        SolveMatrix(ROW, COLUMNS - 1, expanded_matrix);
         
     }
     return 0;
@@ -37,7 +37,7 @@ void SolveMatrix(int numberOfRows, int numberOfColumns, double** matrix) {
         }
         if (leadingElem != i)
         {
-            for (int j = i; j <= numberOfColumns; j++) //Смена мест двух строк.
+            for (int j = i; j <= numberOfColumns; j++) //Смена мест двух строк
             {
                 double supNum = matrix[i][j];
                 matrix[i][j] = matrix[leadingElem][j];
@@ -70,7 +70,7 @@ void SolveMatrix(int numberOfRows, int numberOfColumns, double** matrix) {
             if (matrix[numberOfRows - 1][j] == 0) numOfZero += 1;
     }
     if (numOfZero == numberOfColumns) {
-        fprintf(out, "Inconsistent system");
+        fprintf(out, "Inconsistent");
     }
     else {
        
